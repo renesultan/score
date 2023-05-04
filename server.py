@@ -1,4 +1,3 @@
-# git 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
 
 from flask import Flask
 from flask import render_template
