@@ -1,3 +1,5 @@
+# git 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
+
 from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify
@@ -50,7 +52,9 @@ def increase_score():
     for team in scoreboard:
         if team["id"] == team_id:
             team["score"] += 1
-
+    
+    scoreboard = sorted(scoreboard, key=lambda d: d['score']) 
+    scoreboard.reverse()
     return jsonify(scoreboard=scoreboard)
 
 

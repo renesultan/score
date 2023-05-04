@@ -1,22 +1,33 @@
 function display_scoreboard(scoreboard){
   $("#teams").empty();
+    //scoreboard.sort(compare);
   $.each(scoreboard, function(index, team){
     addTeamView(team.id, team.name, team.score);
   });
+    //alert(scoreboard[1].name);
 }
 
+/*
+function compare( a, b ) {
+  if ( a.score < b.score ){
+    return 1;
+  }
+  if ( a.score > b.score ){
+    return -1;
+  }
+  return 0;
+}
+*/
+
+
 function addTeamView(id, name, score){
-  //alert("potato");
   var team_template = $("<div class = row></div>");
   var name_template = $("<div class = col-md-5></div>");
   var score_template = $("<div class = col-md-2></div>");
   var button_template = $("<div class = col-md-2></div>");
   var increase_button = $("<button class = increase-button>+</button>");
   $(increase_button).click(function(){
-    alert("tomato");
     increase_score(id);
-    reload();
-    alert("skrill");
   });
   name_template.text(name);
   score_template.text(score);
@@ -28,7 +39,6 @@ function addTeamView(id, name, score){
 }
 
 function increase_score(id){
-    alert("toscana");
   var team_id = {"id": id}
   $.ajax({
     type: "POST",
@@ -46,8 +56,8 @@ function increase_score(id){
         console.log(error)
     }
   });
-    alert("piemonte")
-    
+    display_scoreboard(scoreboard);
+    location.reload();
 }
 
 $(document).ready(function(){
